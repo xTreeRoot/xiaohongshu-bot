@@ -1,0 +1,12 @@
+# 小红书自动化工具依赖
+
+# Selenium - Web自动化框架
+selenium>=4.0.0
+
+# WebDriver Manager - 自动管理浏览器驱动
+webdriver-manager>=3.8.0
+
+# 注意：
+# 1. Python 3.7+ 版本
+# 2. 需要安装 Chrome 浏览器
+# 3. dataclasses 在 Python 3.7+ 中已内置

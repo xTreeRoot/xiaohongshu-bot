@@ -1,0 +1,32 @@
+"""
+个人配置文件模板
+
+使用步骤：
+1. 复制此文件并重命名为 config_personal.py
+   cp config_personal.py.copy config_personal.py
+   
+2. 编辑 config_personal.py，填写你的个人信息
+
+3. config_personal.py 会被 .gitignore 忽略，不会被提交到仓库
+"""
+
+# 个人小红书配置
+PERSONAL_CONFIG = {
+    # 你的小红书个人主页URL
+    # 从个人主页地址栏复制，格式如：https://www.xiaohongshu.com/user/profile/你的用户ID
+    "user_profile_url": "https://www.xiaohongshu.com/user/profile/YOUR_USER_ID",
+    
+    # Chrome用户数据目录（可选，用于保存登录状态）
+    # 默认为项目目录下的 selenium_chrome_data
+    # 示例：
+    # - Windows: "C:/Users/YourName/chrome_data"
+    # - macOS/Linux: "~/selenium_chrome_data"
+    "chrome_user_data_dir": "~/selenium_chrome_data",
+    
+    # 是否使用无头模式（True: 后台运行不显示浏览器, False: 显示浏览器窗口）
+    "headless": False,
+    
+    # 其他可选配置
+    "wait_timeout": 10,  # 默认等待超时时间（秒）
+    "page_load_timeout": 3,  # 页面加载等待时间（秒）
+}
