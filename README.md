@@ -1,5 +1,12 @@
 # 小红书自动化工具
 
+##  免责声明
+
+- 本项目仅供学习和研究Selenium自动化技术使用
+- 使用本项目前请确保遵守小红书平台的相关规定和条款
+- 因使用本项目导致的任何问题，作者不承担任何责任
+- 请勿将本项目用于任何非法用途
+
 ## 📁 项目结构
 
 ```
@@ -296,20 +303,6 @@ comment = Comment.from_dict(comment_data)
 comment_dict = comment.to_dict()
 ```
 
-## 📊 重构效果对比
-
-| 指标 | 原始版本 | 重构版本 |
-|------|---------|----------|
-| 架构设计 | 单一类995行 | 分层架构，5个管理器 |
-| 职责分离 | 混合在一起 | 浏览器/笔记/评论/发布独立 |
-| 代码行数 | 995行 | BrowserManager 161行<br>NoteManager 109行<br>CommentManager 460行<br>PublishManager 172行<br>XHSClient 99行 |
-| 配置方式 | 硬编码 | 配置文件 |
-| 日志系统 | print混合 | 统一logging |
-| 测试方式 | 混在__main__ | 独立test_xhs.py |
-| API接口 | 直接调用内部方法 | XHSClient统一接口 |
-| 可扩展性 | 低（需修改主类） | 高（新增管理器） |
-| 可维护性 | 中 | 高 |
-| 可测试性 | 低 | 高 |
 
 ## 🎯 最佳实践
 
@@ -361,9 +354,9 @@ comment_dict = comment.to_dict()
    # 运行docstring校验器
    python3 validate_docstrings.py
    ```
-   - ✅ 校验通过后才能提交代码
-   - ❌ 如果校验失败，会列出所有缺少docstring的文件
-   - 每个Python文件的第一行必须包含模块说明，格式：`"""模块说明"""`
+   -  校验通过后才能提交代码
+   -  如果校验失败，会列出所有缺少docstring的文件
+   -  每个Python文件的第一行必须包含模块说明，格式：`"""模块说明"""`
 4. 提交你的修改 (`git commit -m 'Add some AmazingFeature'`)
 5. 推送到分支 (`git push origin feature/AmazingFeature`)
 6. 提交 Pull Request
