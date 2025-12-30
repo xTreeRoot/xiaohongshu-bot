@@ -352,11 +352,32 @@ comment_dict = comment.to_dict()
 
 欢迎贡献代码、报告问题或提出改进建议！
 
+### 贡献流程
+
 1. Fork 项目
 2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交你的修改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 提交 Pull Request
+3. **确保所有Python文件包含docstring**
+   ```bash
+   # 运行docstring校验器
+   python3 validate_docstrings.py
+   ```
+   - ✅ 校验通过后才能提交代码
+   - ❌ 如果校验失败，会列出所有缺少docstring的文件
+   - 每个Python文件的第一行必须包含模块说明，格式：`"""模块说明"""`
+4. 提交你的修改 (`git commit -m 'Add some AmazingFeature'`)
+5. 推送到分支 (`git push origin feature/AmazingFeature`)
+6. 提交 Pull Request
+
+### 代码规范
+
+- **Docstring要求**：所有Python文件（除`__init__.py`外）必须在第一行包含docstring
+- **格式示例**：
+  ```python
+  """用户管理模块"""
+  import os
+  # ... 其他代码
+  ```
+- **校验工具**：提交前运行 `python3 validate_docstrings.py` 确保通过校验
 
 ##  免责声明
 
