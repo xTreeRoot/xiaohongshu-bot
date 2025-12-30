@@ -50,6 +50,7 @@ chrome_data/
 
 # 个人配置文件（包含敏感信息）
 config_personal.py
+update_readme_tree.sh
 
 # Pytest
 .pytest_cache/

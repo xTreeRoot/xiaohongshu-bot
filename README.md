@@ -3,25 +3,39 @@
 ## 📁 项目结构
 
 ```
-xiaohongshu-bot/
-├── business/              # 业务管理器
-│   ├── browser_manager.py   # 浏览器管理器（核心）
-│   ├── note_manager.py      # 笔记管理器
-│   ├── comment_manager.py   # 评论管理器
-│   ├── publish_manager.py   # 发布管理器
-│   └── xhs_client.py        # 小红书客户端（统一API）
-├── core/                  # 核心模块
-│   ├── config.py            # 配置管理模块
-│   ├── logger.py            # 日志管理模块
-│   ├── models.py            # 数据模型定义
-│   ├── exceptions.py        # 自定义异常
-│   └── decorators.py        # 装饰器模块
-├── utils.py               # 工具函数模块
-├── test_xhs.py            # 测试脚本
-├── requirements.txt       # 依赖列表
-├── .gitignore             # Git忽略文件
-├── LICENSE                # MIT许可证
-└── README.md              # 项目文档
+./
+├── business/                 # 业务管理器
+│   ├── __init__.py
+│   ├── comment_manager.py    # 评论管理模块
+│   ├── note_manager.py       # 笔记管理模块
+│   └── publish_manager.py    # 发布管理模块
+├── core/                     # 核心模块
+│   ├── __init__.py
+│   ├── browser_manager.py    # 浏览器管理模块
+│   ├── config.py             # 配置管理模块
+│   ├── decorators.py         # 装饰器模块
+│   ├── exceptions.py         # 自定义异常类
+│   ├── logger.py             # 日志管理模块
+│   ├── models.py             # 数据模型定义
+│   └── xhs_client.py         # 小红书客户端 - 整合所有管理器
+├── md/                       # 文档目录
+│   ├── ARCHITECTURE.md
+│   ├── MIGRATION.md
+│   └── REFACTORING_SUMMARY.md
+├── LICENSE
+├── README.md                 # 项目文档
+├── README.md.backup
+├── config_personal.py
+├── config_personal.py.copy
+├── install.ps1               # Windows安装脚本
+├── install.sh*               # Linux/macOS安装脚本
+├── requirements.txt          # 依赖列表
+├── test_xhs.py               # 小红书自动化测试脚本
+├── update_readme_tree.sh*    # 更新目录树脚本
+├── utils.py                  # 工具函数模块
+└── validate_docstrings.py
+
+4 directories, 27 files
 ```
 
 ## ✨ 核心特性
