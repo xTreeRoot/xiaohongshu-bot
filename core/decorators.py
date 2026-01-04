@@ -2,7 +2,7 @@
 import time
 import functools
 from typing import Callable, Any, Type, Tuple
-from logger import logger
+from core.logger import logger
 
 
 def retry(max_attempts: int = 3, delay: float = 1.0, 

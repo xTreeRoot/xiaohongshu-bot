@@ -2,8 +2,8 @@
 import json
 import re
 from typing import List, Optional
-from 小红书自动化.core.models import Comment
-from 小红书自动化.core.logger import logger
+from core.models import Comment
+from core.logger import logger
 
 
 class CommentParser:
