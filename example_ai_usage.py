@@ -6,7 +6,7 @@ from pathlib import Path
 root_dir = Path(__file__).parent
 sys.path.insert(0, str(root_dir))
 
-from business.ai_manager import AIManager
+from business import AIManager
 from core.models import Comment, UserInfo
 from core.logger import logger
 

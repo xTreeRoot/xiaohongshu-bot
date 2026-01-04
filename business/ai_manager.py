@@ -1,7 +1,7 @@
 """AI 管理器 - 文案生成和评论回复"""
 import random
 from typing import Optional, List
-from core.ai_client import BaseAIClient, AIClientFactory
+from core import BaseAIClient, AIClientFactory
 from core.models import Comment
 from core.logger import logger
 from core.exceptions import XHSException

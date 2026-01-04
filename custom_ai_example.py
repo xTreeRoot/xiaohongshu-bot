@@ -5,7 +5,7 @@
 fork 本项目的开发者可以参考此示例来接入自己的 AI 服务。
 """
 from typing import List, Dict, Optional
-from core.ai_client import BaseAIClient, AIClientFactory
+from core import BaseAIClient, AIClientFactory
 from core.exceptions import XHSException
 from core.logger import logger
 
