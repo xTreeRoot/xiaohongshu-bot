@@ -2,11 +2,8 @@
 from typing import Optional, List
 
 from core.browser_manager import BrowserManager
-from business.comment_manager import CommentManager
 from core.logger import logger
 from core.models import PublishContent, NoteInfo
-from business.note_manager import NoteManager
-from business.publish_manager import PublishManager
 
 
 class XHSClient:
@@ -14,6 +11,11 @@ class XHSClient:
 
     def __init__(self):
         """初始化客户端"""
+        # 延迟导入，避免循环依赖
+        from business.comment_manager import CommentManager
+        from business.note_manager import NoteManager
+        from business.publish_manager import PublishManager
+        
         # 初始化浏览器管理器
         self.browser = BrowserManager()
         

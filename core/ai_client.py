@@ -277,7 +277,8 @@ class AIClientFactory:
     }
     
     # 默认客户端类型
-    _default_client = "zhipu"
+    # 使用 openai 可以兼容 Ollama 本地模型（通过配置 base_url）
+    _default_client = "openai"
     
     @classmethod
     def register_client(cls, name: str, client_class: type):
