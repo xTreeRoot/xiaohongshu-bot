@@ -4,6 +4,7 @@ import re
 import sys
 from pathlib import Path
 from typing import List, Tuple, Dict
+from core.logger import logger
 
 
 class DocstringValidator:
@@ -95,7 +96,7 @@ class DocstringValidator:
         
         dir_path = self.project_root / directory
         if not dir_path.exists() or not dir_path.is_dir():
-            print(f"⚠️  目录不存在: {directory}")
+            logger.warning(f"  目录不存在: {directory}")
             return
         
         for filepath in dir_path.glob("*.py"):
@@ -106,9 +107,9 @@ class DocstringValidator:
             relative_path = filepath.relative_to(self.project_root)
             
             if is_valid:
-                print(f" {relative_path}: {message}")
+                logger.info(f" {relative_path}: {message}")
             else:
-                print(f" {relative_path}: {message}")
+                logger.warning(f" {relative_path}: {message}")
                 self.errors.append({
                     'file': str(relative_path),
                     'message': message
@@ -128,9 +129,9 @@ class DocstringValidator:
         is_valid, message = self.validate_file(filepath)
         
         if is_valid:
-            print(f" {filename}: {message}")
+            logger.info(f" {filename}: {message}")
         else:
-            print(f" {filename}: {message}")
+            logger.warning(f" {filename}: {message}")
             self.errors.append({
                 'file': filename,
                 'message': message
@@ -143,34 +144,34 @@ class DocstringValidator:
         Returns:
             是否所有文件都有效
         """
-        print("=" * 60)
-        print("🔍 开始校验Python文件的docstring...")
-        print("=" * 60)
+        logger.info("=" * 60)
+        logger.info("开始校验Python文件的docstring...")
+        logger.info("=" * 60)
         
         # 校验 business 目录
-        print("\n📁 扫描 business/ 目录:")
+        logger.info("\n扫描 business/ 目录:")
         self.scan_directory('business')
         
         # 校验 core 目录
-        print("\n📁 扫描 core/ 目录:")
+        logger.info("\n扫描 core/ 目录:")
         self.scan_directory('core')
         
         # 校验根目录的重要文件
-        print("\n📁 扫描根目录:")
+        logger.info("\n扫描根目录:")
         for filename in ['utils.py', 'test_xhs.py']:
             self.scan_file(filename)
         
         # 打印总结
-        print("\n" + "=" * 60)
+        logger.info("\n" + "=" * 60)
         if self.errors:
-            print(f" 发现 {len(self.errors)} 个问题:")
+            logger.warning(f" 发现 {len(self.errors)} 个问题:")
             for error in self.errors:
-                print(f"   - {error['file']}: {error['message']}")
-            print("=" * 60)
+                logger.warning(f"   - {error['file']}: {error['message']}")
+            logger.info("=" * 60)
             return False
         else:
-            print(" 所有Python文件的docstring校验通过!")
-            print("=" * 60)
+            logger.info(" 所有Python文件的docstring校验通过!")
+            logger.info("=" * 60)
             return True
     
     def generate_report(self) -> str:

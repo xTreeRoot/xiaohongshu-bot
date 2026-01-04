@@ -6,6 +6,14 @@ class XHSPublisherException(Exception):
     pass
 
 
+class XHSException(XHSPublisherException):
+    """基础异常类"""
+
+class InvalidConfigError(XHSPublisherException):
+    """配置文件无效"""
+
+
+
 class BrowserInitError(XHSPublisherException):
     """浏览器初始化失败"""
     pass

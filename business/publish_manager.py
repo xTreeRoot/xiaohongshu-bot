@@ -162,7 +162,7 @@ class PublishManager:
             )
 
             logger.info("\n" + "=" * 50)
-            logger.info("✓ 所有步骤完成")
+            logger.info(" 所有步骤完成")
             logger.info("=" * 50 + "\n")
             return True
 

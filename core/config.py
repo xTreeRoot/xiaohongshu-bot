@@ -1,7 +1,25 @@
-"""配置管理模块"""
+""" 配置管理模块"""
 import os
 from dataclasses import dataclass
 from typing import Dict, Any
+from core.logger import logger
+
+
+@dataclass
+class AIConfig:
+    """AI 配置"""
+    # API 密钥
+    api_key: str = ""
+    # API 基础 URL（支持自定义/第三方 API）
+    base_url: str = "https://api.openai.com/v1"
+    # 模型名称
+    model: str = "gpt-3.5-turbo"
+    # 温度（控制随机性，0-2，越高越随机）
+    temperature: float = 0.9
+    # 最大 token 数
+    max_tokens: int = 300
+    # 超时时间（秒）
+    timeout: int = 30
 
 
 @dataclass
@@ -65,6 +83,7 @@ class AppConfig:
     browser: BrowserConfig = None
     wait: WaitConfig = None
     xhs: XHSConfig = None
+    ai: AIConfig = None
     
     def __post_init__(self):
         if self.browser is None:
@@ -73,6 +92,8 @@ class AppConfig:
             self.wait = WaitConfig()
         if self.xhs is None:
             self.xhs = XHSConfig()
+        if self.ai is None:
+            self.ai = AIConfig()
 
 
 # 全局配置实例
@@ -101,10 +122,20 @@ try:
     if "page_load_timeout" in PERSONAL_CONFIG:
         config.wait.page_load_timeout = PERSONAL_CONFIG["page_load_timeout"]
     
-    print("✓ 已加载个人配置文件")
+    # AI 配置
+    if "ai_api_key" in PERSONAL_CONFIG:
+        config.ai.api_key = PERSONAL_CONFIG["ai_api_key"]
+    if "ai_base_url" in PERSONAL_CONFIG:
+        config.ai.base_url = PERSONAL_CONFIG["ai_base_url"]
+    if "ai_model" in PERSONAL_CONFIG:
+        config.ai.model = PERSONAL_CONFIG["ai_model"]
+    if "ai_temperature" in PERSONAL_CONFIG:
+        config.ai.temperature = PERSONAL_CONFIG["ai_temperature"]
+    
+    logger.info("已加载个人配置文件")
 except ImportError:
     # 个人配置文件不存在，使用默认配置
     pass
 except Exception as e:
-    print(f"  加载个人配置文件失败: {e}")
-    print("将使用默认配置")
+    logger.warning(f"  加载个人配置文件失败: {e}")
+    logger.info("将使用默认配置")

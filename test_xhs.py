@@ -23,7 +23,7 @@ def test_comment_and_reply():
             logger.warning("未找到匹配的笔记，测试终止")
             return
         
-        logger.info(f"✓ 成功打开笔记: {note_info.title}")
+        logger.info(f"成功打开笔记: {note_info.title}")
         
         # 2. 获取评论（启用滚动加载）
         comments = client.get_comments(
@@ -41,16 +41,16 @@ def test_comment_and_reply():
         # 4. 格式化输出（使用工具类）
         formatted_output = CommentParser.format_comments(comments)
         logger.info(f"\n格式化后的评论列表:")
-        print(formatted_output)
+        logger.info(formatted_output)
         
         # 5. 回复第一条评论
         if len(comments) > 0:
             test_comment_id = comments[0].comment_id
             test_reply_text = "666"  # 回复内容（可以后续换成AI生成）
             
-            print(f"\n{'=' * 80}")
-            print(f"将使用 AI 自动回复评论...")
-            print(f"{'=' * 80}")
+            logger.info(f"\n{'=' * 80}")
+            logger.info(f"将使用 AI 自动回复评论...")
+            logger.info(f"{'=' * 80}")
             
             success = client.reply_comment(
                 comment_id=test_comment_id,
@@ -58,9 +58,9 @@ def test_comment_and_reply():
             )
             
             if success:
-                print(f"\n✓ 自动回复完成！")
+                logger.info(f"\n自动回复完成！")
             else:
-                print(f"\n✗ 自动回复失败")
+                logger.error(f"\n自动回复失败")
         
         # 保持浏览器不退出
         input("\n按回车键退出...")
@@ -92,9 +92,9 @@ def test_publish():
         success = client.publish_content(publish_content)
         
         if success:
-            logger.info("✓ 发布成功")
+            logger.info(" 发布成功")
         else:
-            logger.error("✗ 发布失败")
+            logger.error("[ERROR] 发布失败")
         
         # 保持浏览器不退出
         input("\n按回车键退出...")
@@ -141,15 +141,15 @@ def test_only_fetch_comments():
 if __name__ == "__main__":
     """主程序入口 - 选择要运行的测试"""
     
-    print("\n" + "=" * 60)
-    print("小红书自动化测试")
-    print("=" * 60)
-    print("\n请选择要运行的测试:")
-    print("1. 搜索笔记 -> 获取评论 -> 自动回复")
-    print("2. 发布内容")
-    print("3. 仅获取评论（不回复）")
-    print("0. 退出")
-    print()
+    logger.info("\n" + "=" * 60)
+    logger.info("小红书自动化测试")
+    logger.info("=" * 60)
+    logger.info("\n请选择要运行的测试:")
+    logger.info("1. 搜索笔记 -> 获取评论 -> 自动回复")
+    logger.info("2. 发布内容")
+    logger.info("3. 仅获取评论（不回复）")
+    logger.info("0. 退出")
+    logger.info("")
     
     choice = input("请输入选项 (0-3): ").strip()
     
@@ -160,6 +160,6 @@ if __name__ == "__main__":
     elif choice == "3":
         test_only_fetch_comments()
     elif choice == "0":
-        print("退出程序")
+        logger.info("退出程序")
     else:
-        print("无效选项，退出程序")
+        logger.warning("无效选项，退出程序")

@@ -6,7 +6,17 @@ selenium>=4.0.0
 # WebDriver Manager - 自动管理浏览器驱动
 webdriver-manager>=3.8.0
 
+# 智谱 AI SDK - AI 接口调用（默认）
+zhipuai>=2.0.0
+
+# OpenAI SDK - AI 接口调用（可选）
+openai>=1.0.0
+
+# Requests - HTTP 请求库（备用）
+requests>=2.31.0
+
 # 注意：
 # 1. Python 3.7+ 版本
 # 2. 需要安装 Chrome 浏览器
 # 3. dataclasses 在 Python 3.7+ 中已内置
+# 4. AI 功能需要配置 API Key

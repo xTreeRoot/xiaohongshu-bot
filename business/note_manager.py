@@ -53,7 +53,7 @@ class NoteManager:
                 config.xhs.selectors["note_item"]
             )
 
-            logger.info(f"✓ 找到 {len(title_elements)} 个帖子")
+            logger.info(f" 找到 {len(title_elements)} 个帖子")
 
             # 4. 遍历所有标题，查找包含关键词的帖子
             for i, title_element in enumerate(title_elements):
@@ -61,7 +61,7 @@ class NoteManager:
                 logger.debug(f"  [{i + 1}] {title_text}")
 
                 if keyword in title_text:
-                    logger.info(f"✓ 找到匹配的帖子: {title_text}")
+                    logger.info(f" 找到匹配的帖子: {title_text}")
 
                     # 5. 找到对应的链接并点击
                     note_section = title_element.find_element(
@@ -75,11 +75,11 @@ class NoteManager:
                     )
 
                     note_url = note_link.get_attribute("href")
-                    logger.info(f"✓ 帖子链接: {note_url}")
+                    logger.info(f" 帖子链接: {note_url}")
 
                     # 6. 点击链接
                     note_link.click()
-                    logger.info("✓ 已点击帖子，等待页面跳转...")
+                    logger.info(" 已点击帖子，等待页面跳转...")
 
                     # 7. 等待跳转到帖子详情页
                     time.sleep(config.wait.page_load_timeout)
@@ -88,7 +88,7 @@ class NoteManager:
                     current_url = self.browser.get_current_url()
                     if "/explore/" in current_url:
                         note_id = URLExtractor.extract_note_id(current_url)
-                        logger.info(f"✓ 成功跳转到帖子详情页: {current_url}")
+                        logger.info(f" 成功跳转到帖子详情页: {current_url}")
 
                         return NoteInfo(
                             note_id=note_id or "",

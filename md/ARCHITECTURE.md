@@ -193,7 +193,7 @@ class XHSClient:
 - 单例模式
 - 统一日志格式
 
-## 🔄 数据流
+## 数据流
 
 ### 发布内容流程
 ```
@@ -223,7 +223,7 @@ CommentParser.parse_response()
 返回 List[Comment]
 ```
 
-## 🎯 设计模式
+## 设计模式
 
 ### 1. 依赖注入 (Dependency Injection)
 所有管理器通过构造函数接收 `BrowserManager` 实例：
@@ -306,7 +306,7 @@ XHSClient          #  99行 - 统一接口
 -  代码复用性高
 -  更好的可维护性
 
-## 🚀 扩展示例
+## 扩展示例
 
 ### 添加新功能：私信管理
 

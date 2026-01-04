@@ -68,3 +68,6 @@ htmlcov/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# qoder
+.qoder
