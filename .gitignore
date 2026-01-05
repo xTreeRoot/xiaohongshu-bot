@@ -71,3 +71,12 @@ Desktop.ini
 
 # qoder
 .qoder
+
+# Database files
+*.db
+
+# Cache directories
+cache/*
+
+# Data files
+data/*.json

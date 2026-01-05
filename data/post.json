@@ -1,0 +1,6 @@
+{
+  "title": "示例标题",
+  "content": "示例内容",
+  "tags": ["标签1", "标签2"],
+  "image_urls": ["https://example.com/image1.jpg"]
+}

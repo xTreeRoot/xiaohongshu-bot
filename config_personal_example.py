@@ -1,3 +1,15 @@
+"""
+个人配置文件模板
+
+使用步骤：
+1. 复制此文件并重命名为 config_personal.py
+   cp config_personal.py.copy config_personal.py
+   
+2. 编辑 config_personal.py，填写你的个人信息
+
+3. config_personal.py 会被 .gitignore 忽略，不会被提交到仒库
+"""
+
 # 个人配置示例文件
 # 复制此文件为 config_personal.py 并填入你的配置
 
