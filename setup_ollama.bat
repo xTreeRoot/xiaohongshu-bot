@@ -10,7 +10,7 @@ echo.
 REM 检查是否已安装 Ollama
 where ollama >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
-    echo ✅ Ollama 已安装
+    echo  Ollama 已安装
     ollama --version
 ) else (
     echo ❌ Ollama 未安装
@@ -31,7 +31,7 @@ echo ================================================
 REM 检查服务是否已在运行
 curl -s http://localhost:11434/api/tags >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
-    echo ✅ Ollama 服务已在运行
+    echo  Ollama 服务已在运行
 ) else (
     echo 正在启动 Ollama 服务...
     start /B ollama serve
@@ -40,9 +40,9 @@ if %ERRORLEVEL% EQU 0 (
     REM 再次检查
     curl -s http://localhost:11434/api/tags >nul 2>nul
     if %ERRORLEVEL% EQU 0 (
-        echo ✅ Ollama 服务启动成功
+        echo  Ollama 服务启动成功
     ) else (
-        echo ⚠️ Ollama 服务启动失败
+        echo Ollama 服务启动失败
         echo 请手动打开新终端运行: ollama serve
         echo 然后重新运行此脚本
         pause
@@ -81,7 +81,7 @@ echo ================================================
 echo 安装完成！
 echo ================================================
 echo.
-echo ✅ 配置文件已更新为使用 Ollama
+echo  配置文件已更新为使用 Ollama
 echo.
 echo 下一步:
 echo 1. 确认 Ollama 服务正在运行: curl http://localhost:11434/api/tags

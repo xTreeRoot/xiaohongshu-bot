@@ -1,14 +1,11 @@
-"""小红书自动化工具 - 业务模块"""
-
-
-from business.note_manager import NoteManager
-from business.comment_manager import CommentManager
-from business.publish_manager import PublishManager
-from business.ai_manager import AIManager
+from .ai_manager import AIManager
+from .comment_manager import CommentManager
+from .note_manager import NoteManager
+from .publish_manager import PublishManager
 
 __all__ = [
-    'NoteManager',
-    'CommentManager',
-    'PublishManager',
     'AIManager',
+    'CommentManager', 
+    'NoteManager',
+    'PublishManager'
 ]

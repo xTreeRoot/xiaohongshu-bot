@@ -75,10 +75,39 @@ def test_provocative_style():
         logger.error(f"测试失败: {e}")
 
 
+def test_unreasonable_style():
+    """测试250风格/争议型求助帖"""
+    logger.info("\n" + "="*60)
+    logger.info("测试 4: 250风格争议帖生成")
+    logger.info("="*60)
+    
+    ai_manager = AIManager()
+    
+    try:
+        # 随机场景
+        post1 = ai_manager.generate_xiaohongshu_post(
+            style="unreasonable",
+            word_count=100
+        )
+        logger.info(f"\n【随机场景-250风格】\n{post1}\n")
+        logger.info("-" * 60)
+        
+        # 指定场景
+        post2 = ai_manager.generate_xiaohongshu_post(
+            topic="舍友不住宿舍不愿意分摔电费",
+            style="unreasonable",
+            word_count=100
+        )
+        logger.info(f"\n【指定场景-250风格】\n{post2}\n")
+        
+    except Exception as e:
+        logger.error(f"测试失败: {e}")
+
+
 def test_comment_reply():
     """测试评论回复"""
     logger.info("\n" + "="*60)
-    logger.info("测试 4: 智能评论回复")
+    logger.info("测试 5: 智能评论回复")
     logger.info("="*60)
     
     ai_manager = AIManager()
@@ -120,7 +149,7 @@ def test_comment_reply():
 def test_batch_generate():
     """测试批量生成"""
     logger.info("\n" + "="*60)
-    logger.info("测试 5: 批量生成文案")
+    logger.info("测试 6: 批量生成文案")
     logger.info("="*60)
     
     ai_manager = AIManager()
@@ -150,8 +179,9 @@ def main():
         ("1", "小仙女风格", test_fairy_style),
         ("2", "逆天言论风格", test_controversial_style),
         ("3", "引战风格", test_provocative_style),
-        ("4", "智能评论回复", test_comment_reply),
-        ("5", "批量生成", test_batch_generate),
+        ("4", "250风格争议帖", test_unreasonable_style),
+        ("5", "智能评论回复", test_comment_reply),
+        ("6", "批量生成", test_batch_generate),
         ("all", "全部测试", None),
     ]
     
@@ -159,7 +189,7 @@ def main():
     for code, name, _ in tests:
         logger.info(f"  {code}. {name}")
     
-    choice = input("\n请输入选项（1-5 或 all）: ").strip()
+    choice = input("\n请输入选项（1-6 或 all）: ").strip()
     
     if choice == "all":
         for code, name, func in tests[:-1]:  # 排除 "all" 选项本身
