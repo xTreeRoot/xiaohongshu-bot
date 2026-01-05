@@ -48,9 +48,11 @@ class NoteManager:
             time.sleep(config.wait.page_load_timeout)
 
             # 3. 查找所有帖子标题
+            # 使用DOM缓存功能查找元素
+            note_item_selector = config.xhs.selectors["note_item"]
             title_elements = self.browser.driver.find_elements(
                 By.CSS_SELECTOR,
-                config.xhs.selectors["note_item"]
+                note_item_selector
             )
 
             logger.info(f" 找到 {len(title_elements)} 个帖子")
@@ -69,9 +71,11 @@ class NoteManager:
                         "./ancestor::section[@class='note-item']"
                     )
 
+                    # 使用DOM缓存功能查找笔记封面
+                    note_cover_selector = config.xhs.selectors["note_cover"]
                     note_link = note_section.find_element(
                         By.CSS_SELECTOR,
-                        config.xhs.selectors["note_cover"]
+                        note_cover_selector
                     )
 
                     note_url = note_link.get_attribute("href")

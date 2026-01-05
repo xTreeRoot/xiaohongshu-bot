@@ -6,6 +6,7 @@ from .comment import Comment
 from .note_info import NoteInfo
 from .ai_config import AIConfig
 from .publish_content import PublishContent
+from .dom_element import DOMElement
 
 __all__ = [
     'UserInfo',
@@ -14,4 +15,5 @@ __all__ = [
     'NoteInfo',
     'AIConfig',
     'PublishContent',
+    'DOMElement',
 ]

@@ -2,6 +2,7 @@
 from typing import Optional, List
 
 from core.browser_manager import BrowserManager
+from core.dom_manager import DOMManager
 from core.logger import logger
 from core.models import PublishContent, NoteInfo
 
@@ -23,6 +24,9 @@ class XHSClient:
         self.note = NoteManager(self.browser)
         self.comment = CommentManager(self.browser)
         self.publish = PublishManager(self.browser)
+        
+        # 初始化DOM管理器
+        self.dom = self.browser.dom_manager
         
         logger.info("小红书客户端初始化完成")
 
@@ -91,6 +95,30 @@ class XHSClient:
             是否成功
         """
         return self.publish.publish_workflow(publish_content)
+
+    # ==================== DOM管理相关方法 ====================
+    
+    def get_dom_element(self, selector: str):
+        """获取DOM元素信息
+        
+        Args:
+            selector: CSS选择器或XPath
+            
+        Returns:
+            DOM元素信息
+        """
+        return self.dom.get_element(selector)
+    
+    def update_dom_element(self, element_info):
+        """更新DOM元素信息
+        
+        Args:
+            element_info: DOM元素信息
+            
+        Returns:
+            是否更新成功
+        """
+        return self.dom.update_element(element_info)
 
     # ==================== 通用方法 ====================
     

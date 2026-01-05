@@ -1,0 +1,12 @@
+{
+  "selector:#cache-test": {
+    "element_id": "cache_test",
+    "selector": "#cache-test",
+    "element_type": "div",
+    "position": null,
+    "text_content": "更新后的缓存测试元素",
+    "updated_at": "2026-01-05T18:01:48.542491",
+    "page_url": "https://example.com",
+    "description": "用于测试缓存行为"
+  }
+}

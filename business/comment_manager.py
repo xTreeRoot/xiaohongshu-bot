@@ -113,7 +113,11 @@ class CommentManager:
                 scroll_method = 'window'
                 logger.info("未找到可滚动容器,将使用整页滚动")
                 try:
-                    comment_area = self.browser.driver.find_element(By.CSS_SELECTOR, "div.list-container")
+                    # 使用DOM缓存功能查找评论区域
+                    comment_area = self.browser.find_element_with_dom_cache(
+                        "div.list-container",
+                        element_description="评论区域容器"
+                    )
                     self.browser.execute_script("arguments[0].scrollIntoView({block: 'start'});", comment_area)
                     time.sleep(1)
                     logger.info("已定位到评论区域")
@@ -400,10 +404,10 @@ class CommentManager:
             logger.debug(f"  查找评论元素: {comment_selector}")
 
             try:
-                comment_element = self.browser.find_element(
-                    By.CSS_SELECTOR,
+                comment_element = self.browser.find_element_with_dom_cache(
                     comment_selector,
-                    timeout=5
+                    timeout=5,
+                    element_description=f"评论-{comment_id}"
                 )
                 logger.info(f"  找到评论元素")
             except:
@@ -422,11 +426,11 @@ class CommentManager:
             logger.debug(f"  查找回复按钮: {reply_button_selector}")
 
             try:
-                reply_button = self.browser.find_element(
-                    By.CSS_SELECTOR,
+                reply_button = self.browser.find_element_with_dom_cache(
                     reply_button_selector,
                     timeout=5,
-                    clickable=True
+                    clickable=True,
+                    element_description="回复按钮"
                 )
                 logger.info(f"  找到回复按钮")
 
@@ -443,11 +447,11 @@ class CommentManager:
             logger.debug(f"  等待输入框出现...")
 
             try:
-                input_element = self.browser.find_element(
-                    By.CSS_SELECTOR,
+                input_element = self.browser.find_element_with_dom_cache(
                     input_selector,
                     timeout=5,
-                    clickable=True
+                    clickable=True,
+                    element_description="回复输入框"
                 )
                 logger.info(f"  输入框已出现")
             except:

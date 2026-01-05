@@ -7,6 +7,8 @@ from core.browser_manager import BrowserManager
 # 使用时请直接: from core.xhs_client import XHSClient
 from core.models import Comment, NoteInfo, PublishContent, UserInfo, AIConfig
 from core.ai_client import BaseAIClient, OpenAIClient, ZhipuAIClient, AIClientFactory
+from core.dom_manager import DOMManager, DOMCacheManager
+from core.dom_mapper import DOMElementMapper
 from core.exceptions import (
     XHSPublisherException,
     BrowserInitError,
@@ -28,6 +30,9 @@ __all__ = [
     'OpenAIClient',
     'ZhipuAIClient',
     'AIClientFactory',
+    'DOMManager',
+    'DOMCacheManager',
+    'DOMElementMapper',
     'XHSPublisherException',
     'BrowserInitError',
     'ElementNotFoundError',
