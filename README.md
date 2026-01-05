@@ -85,7 +85,7 @@
 **Linux/macOS:**
 ```bash
 # 克隆项目
-git clone https://github.com/YOUR_USERNAME/xiaohongshu-bot.git
+git clone https://github.com/xTreeRoot/xiaohongshu-bot.git
 cd xiaohongshu-bot
 
 # 运行安装脚本
@@ -96,7 +96,7 @@ chmod +x install.sh
 **Windows:**
 ```powershell
 # 克隆项目
-git clone https://github.com/YOUR_USERNAME/xiaohongshu-bot.git
+git clone https://github.com/xTreeRoot/xiaohongshu-bot.git
 cd xiaohongshu-bot
 
 # 运行安装脚本
@@ -107,7 +107,7 @@ cd xiaohongshu-bot
 
 ```bash
 # 克隆项目
-git clone https://github.com/YOUR_USERNAME/xiaohongshu-bot.git
+git clone https://github.com/xTreeRoot/xiaohongshu-bot.git
 cd xiaohongshu-bot
 
 # 创建虚拟环境（可选）
