@@ -5,7 +5,7 @@ from core.logger import logger
 from core.browser_manager import BrowserManager
 # 注意： XHSClient 不在这里导入，避免循环依赖
 # 使用时请直接: from core.xhs_client import XHSClient
-from core.models import Comment, NoteInfo, PublishContent, UserInfo
+from core.models import Comment, NoteInfo, PublishContent, UserInfo, AIConfig
 from core.ai_client import BaseAIClient, OpenAIClient, ZhipuAIClient, AIClientFactory
 from core.exceptions import (
     XHSPublisherException,
@@ -23,6 +23,7 @@ __all__ = [
     'NoteInfo',
     'PublishContent',
     'UserInfo',
+    'AIConfig',
     'BaseAIClient',
     'OpenAIClient',
     'ZhipuAIClient',

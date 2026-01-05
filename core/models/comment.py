@@ -1,43 +1,10 @@
-"""数据模型定义"""
+"""评论数据模型"""
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 
-
-@dataclass
-class UserInfo:
-    """用户信息"""
-    user_id: str = ""
-    nickname: str = "未知用户"
-    avatar: str = ""
-    
-    @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'UserInfo':
-        """从字典创建实例"""
-        return cls(
-            user_id=data.get('user_id', ''),
-            nickname=data.get('nickname', '未知用户'),
-            avatar=data.get('avatar', '')
-        )
-
-
-@dataclass
-class AudioInfo:
-    """语音信息"""
-    asr_text: str = ""
-    tag_text: str = ""
-    duration: int = 0
-    
-    @classmethod
-    def from_dict(cls, data: Optional[Dict[str, Any]]) -> Optional['AudioInfo']:
-        """从字典创建实例"""
-        if not data:
-            return None
-        return cls(
-            asr_text=data.get('asr_text', ''),
-            tag_text=data.get('tag_text', ''),
-            duration=data.get('duration', 0)
-        )
+from .user_info import UserInfo
+from .audio_info import AudioInfo
 
 
 @dataclass
@@ -115,40 +82,3 @@ class Comment:
             'ip_location': self.ip_location,
             'sub_comment_count': self.sub_comment_count
         }
-
-
-@dataclass
-class NoteInfo:
-    """笔记信息"""
-    note_id: str
-    title: str
-    url: str
-    author: Optional[UserInfo] = None
-    create_time: Optional[datetime] = None
-    
-    @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'NoteInfo':
-        """从字典创建实例"""
-        author = None
-        if 'author' in data:
-            author = UserInfo.from_dict(data['author'])
-        
-        return cls(
-            note_id=data.get('note_id', ''),
-            title=data.get('title', ''),
-            url=data.get('url', ''),
-            author=author
-        )
-
-
-@dataclass
-class PublishContent:
-    """发布内容"""
-    content: str
-    title: str
-    description: str = ""
-    tags: List[str] = field(default_factory=list)
-    
-    def validate(self) -> bool:
-        """验证内容是否有效"""
-        return bool(self.content and self.title)

@@ -4,6 +4,7 @@ from typing import List, Dict, Any, Optional
 from .config import config
 from .logger import logger
 from .exceptions import XHSException
+from .models import AIConfig
 
 
 class BaseAIClient(ABC):
@@ -92,29 +93,40 @@ class OpenAIClient(BaseAIClient):
     这是默认的 AI 客户端实现，支持 OpenAI 及其兼容 API。
     """
     
-    def __init__(self, api_key: Optional[str] = None, base_url: Optional[str] = None, 
-                 model: Optional[str] = None, temperature: Optional[float] = None,
-                 max_tokens: Optional[int] = None, timeout: Optional[int] = None):
+    def __init__(self, ai_config: Optional[AIConfig] = None, **kwargs):
         """
         初始化 OpenAI 客户端
         
         Args:
-            api_key: API 密钥，为 None 则从配置文件读取
-            base_url: API 基础 URL，为 None 则使用默认配置
-            model: 模型名称
-            temperature: 温度参数
-            max_tokens: 最大 token 数
-            timeout: 超时时间
+            ai_config: AI 配置对象，为 None 则从参数或配置文件读取
+            **kwargs: 单独传入的参数（兼容旧用法）
+                api_key: API 密钥
+                base_url: API 基础 URL
+                model: 模型名称
+                temperature: 温度参数
+                max_tokens: 最大 token 数
+                timeout: 超时时间
         """
         from openai import OpenAI
         
-        # 使用传入参数或配置文件
-        self.api_key = api_key or config.ai.api_key
-        self.base_url = base_url or config.ai.base_url
-        self.model = model or config.ai.model
-        self.temperature = temperature or config.ai.temperature
-        self.max_tokens = max_tokens or config.ai.max_tokens
-        self.timeout = timeout or config.ai.timeout
+        # 支持两种用法：
+        # 1. 直接传入 AIConfig 对象
+        # 2. 通过单独参数传入（兼容旧用法）
+        if ai_config:
+            self.api_key = ai_config.api_key or config.ai.api_key
+            self.base_url = ai_config.base_url or config.ai.base_url
+            self.model = ai_config.model or config.ai.model
+            self.temperature = ai_config.temperature or config.ai.temperature
+            self.max_tokens = ai_config.max_tokens or config.ai.max_tokens
+            self.timeout = ai_config.timeout or config.ai.timeout
+        else:
+            # 兼容旧用法
+            self.api_key = kwargs.get('api_key') or config.ai.api_key
+            self.base_url = kwargs.get('base_url') or config.ai.base_url
+            self.model = kwargs.get('model') or config.ai.model
+            self.temperature = kwargs.get('temperature') or config.ai.temperature
+            self.max_tokens = kwargs.get('max_tokens') or config.ai.max_tokens
+            self.timeout = kwargs.get('timeout') or config.ai.timeout
         
         self.client: Optional[OpenAI] = None
         self._init_client()
@@ -183,27 +195,35 @@ class ZhipuAIClient(BaseAIClient):
     支持智谱 AI 的 GLM 系列模型。
     """
     
-    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None,
-                 temperature: Optional[float] = None, max_tokens: Optional[int] = None):
+    def __init__(self, ai_config: Optional[AIConfig] = None, **kwargs):
         """
         初始化智谱 AI 客户端
         
         Args:
-            api_key: API 密钥，为 None 则从配置文件读取
-            model: 模型名称，默认 glm-4
-            temperature: 温度参数
-            max_tokens: 最大 token 数
+            ai_config: AI 配置对象，为 None 则从参数或配置文件读取
+            **kwargs: 单独传入的参数（兼容旧用法）
+                api_key: API 密钥
+                model: 模型名称，默认 glm-4
+                temperature: 温度参数
+                max_tokens: 最大 token 数
         """
         try:
             from zhipuai import ZhipuAI
         except ImportError:
             raise XHSException("请安装 zhipuai: pip install zhipuai")
         
-        # 使用传入参数或配置文件
-        self.api_key = api_key or config.ai.api_key
-        self.model = model or config.ai.model if hasattr(config.ai, 'model') else "glm-4"
-        self.temperature = temperature or config.ai.temperature
-        self.max_tokens = max_tokens or config.ai.max_tokens
+        # 支持两种用法
+        if ai_config:
+            self.api_key = ai_config.api_key or config.ai.api_key
+            self.model = ai_config.model or config.ai.model if hasattr(config.ai, 'model') else "glm-4"
+            self.temperature = ai_config.temperature or config.ai.temperature
+            self.max_tokens = ai_config.max_tokens or config.ai.max_tokens
+        else:
+            # 兼容旧用法
+            self.api_key = kwargs.get('api_key') or config.ai.api_key
+            self.model = kwargs.get('model') or config.ai.model if hasattr(config.ai, 'model') else "glm-4"
+            self.temperature = kwargs.get('temperature') or config.ai.temperature
+            self.max_tokens = kwargs.get('max_tokens') or config.ai.max_tokens
         
         self.client: Optional[ZhipuAI] = None
         self._init_client()
